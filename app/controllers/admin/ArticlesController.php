@@ -37,7 +37,7 @@ class ArticlesController extends \BaseController {
             $page->save();
  
             Notification::success('新增页面成功！');
- 
+
             return Redirect::route('admin.articles.edit', $page->id);
         }
  
@@ -75,6 +75,7 @@ class ArticlesController extends \BaseController {
         $page->delete();
 
         Notification::success('删除成功！');
+
         return Redirect::route('admin.articles.index');
     }
 
