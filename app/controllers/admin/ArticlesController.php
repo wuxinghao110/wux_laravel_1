@@ -11,17 +11,17 @@ class ArticlesController extends \BaseController {
  
     public function index()
     {
-        return \View::make('admin.pages.index')->with('pages', Page::all());
+        return \View::make('admin.articles.index')->with('articles', Page::all());
     }
 
     public function show($id)
     {
-        return \View::make('admin.pages.show')->with('page', Page::find($id))->withAuthor(Sentry::findUserById(Page::find($id)->user_id)->name);
+        return \View::make('admin.articles.show')->with('page', Page::find($id))->withAuthor(Sentry::findUserById(Page::find($id)->user_id)->name);
     }
 
     public function create()
     {
-        return \View::make('admin.pages.create');
+        return \View::make('admin.articles.create');
     }
 
     public function store()
@@ -37,8 +37,8 @@ class ArticlesController extends \BaseController {
             $page->save();
  
             Notification::success('新增页面成功！');
- 
-            return Redirect::route('admin.pages.edit', $page->id);
+
+            return Redirect::route('admin.articles.edit', $page->id);
         }
  
         return Redirect::back()->withInput()->withErrors($validation->errors);
@@ -46,7 +46,7 @@ class ArticlesController extends \BaseController {
 
     public function edit($id)
     {
-        return \View::make('admin.pages.edit')->with('page', Page::find($id));
+        return \View::make('admin.articles.edit')->with('page', Page::find($id));
     }
 
     public function update($id)
@@ -63,7 +63,7 @@ class ArticlesController extends \BaseController {
 
             Notification::success('更新页面成功！');
 
-            return Redirect::route('admin.pages.edit', $page->id);
+            return Redirect::route('admin.articles.edit', $page->id);
         }
 
         return Redirect::back()->withInput()->withErrors($validation->errors);
@@ -75,7 +75,8 @@ class ArticlesController extends \BaseController {
         $page->delete();
 
         Notification::success('删除成功！');
-        return Redirect::route('admin.pages.index');
+
+        return Redirect::route('admin.articles.index');
     }
 
 }
