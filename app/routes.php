@@ -26,3 +26,28 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth.admin'), function()
     Route::resource('articles', 'App\Controllers\Admin\ArticlesController');
     Route::resource('pages', 'App\Controllers\Admin\PagesController');
 });
+
+
+Route::get('test1',function(){
+        return Config::get('app.timezone');
+});
+
+Route::get('test2',function(){
+        return $_ENV['TEST_STRIPE_KEY'];
+    }
+);
+
+Route::get('test3',function(){
+        return $_SERVER;
+    }
+);
+
+Route::get('test4',function(){
+    echo App::environment('local');
+});
+
+Route::get('test5',function(){
+    return Config::get('mail.host');
+});
+
+
