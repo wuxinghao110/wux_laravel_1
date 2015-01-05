@@ -50,4 +50,13 @@ Route::get('test5',function(){
     return Config::get('mail.host');
 });
 
+Route::get('test6',function(){
+    try {
+        $response = RestClient::get('hostname:port/endpoint');
+        return '1212';
+    } catch (Exception $ex) {
+        print "Error: " . $ex->getMessage(); // Error: COULDNT_RESOLVE_HOST
+    }
+});
+
 
